@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤량</title>
+    <style>
+        * {margin: 0; padding: 0; }
+        body {height: 5000px;}
+        .main_position_bar {position: fixed; width:10px; height: 200px; background: #aaa; z-index: 777; left: 50px; top: 50%; transform: translateY(-50%);}
+        .main_position_bar span {display: block; height: 5px; width: 20px;  margin-left: -20px; background: #A85010; position: absolute; top: 0; transition: 0.5s;}
+    </style>
+</head>
+<body>
+    <div class="main_position_bar">
+        <span></span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $(window).scroll(function(){
+            let scrT = $(window).scrollTop();
+            let winH = $(window).height();
+            let docH = $(document).height();  //전체높이 5000
+            let barH = $('.main_position_bar').height();   //200
+            console.log(scrT)
+            
+            let dap = (scrT) / (docH - winH) * 100
+
+
+            $('.main_position_bar span').css({height:dap+'%'})
+        })
+    </script>
+</body>
+</html>
